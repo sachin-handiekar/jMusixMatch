@@ -29,7 +29,6 @@ A Java wrapper for the MusixMatch API
 
 * Getting Lyrics
 
-		// Getting Lyrics
 		int trackID = data.getTrackId();
 
 		Lyrics lyrics = musixMatch.getLyrics(trackID);
@@ -41,6 +40,22 @@ A Java wrapper for the MusixMatch API
 		System.out.println("Pixel-Tracking-URL : "  + lyrics.getPixelTrackingURL());
 		System.out.println("Lyrics Copyright : "    + lyrics.getLyricsCopyright());
 
+
+* Search Tracks
+
+                // The following will search for tracks with matching artist_name 'Eminem'
+ 		List<Track> tracks = musixMatch.searchTracks("", "Eminem", "", 10, 10, true);
+
+		for (Track trk : tracks) {
+			TrackData trkData = trk.getTrack();
+
+			System.out.println("AlbumID : "    + trkData.getAlbumId());
+			System.out.println("Album Name : " + trkData.getAlbumName());
+			System.out.println("Artist ID : "  + trkData.getArtistId());
+			System.out.println("Album Name : " + trkData.getArtistName());
+			System.out.println("Track ID : "   + trkData.getTrackId());
+			System.out.println();
+		}
 
 
 ##Dependencies
