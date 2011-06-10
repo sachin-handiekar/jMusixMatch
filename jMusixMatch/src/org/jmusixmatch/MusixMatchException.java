@@ -19,8 +19,8 @@ package org.jmusixmatch;
 /**
  * A custom exception for the MusixMatch.
  * 
- * @author handiekars
- *
+ * @author Sachin Handiekar
+ * @version 1.0
  */
 @SuppressWarnings("serial")
 public class MusixMatchException extends Exception {
