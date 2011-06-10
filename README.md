@@ -6,8 +6,8 @@ A Java wrapper for the MusixMatch API
 
 * Declaring the MusixMatch Instance
 
-  String apiKey = "Your MusixMatch API Key";
-  MusixMatch musixMatch = new MusixMatch(apiKey);
+		String apiKey = "Your MusixMatch API Key";
+		MusixMatch musixMatch = new MusixMatch(apiKey);
 
 
 * Getting Track Data
