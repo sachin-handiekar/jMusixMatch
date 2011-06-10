@@ -75,7 +75,9 @@ public class MusixMatch {
         Lyrics lyrics = null;
 
         String methodName = CLASS_NAME + ".getLyrics()";
+        
         Helper.logEnter(LOGGER, methodName, null);
+        
         LyricsGetMessage message = null;
         Map<String, Object> params = new HashMap<String, Object>();
 
@@ -93,6 +95,9 @@ public class MusixMatch {
         } catch (JsonParseException jpe) {
             handleErrorResponse(response);
         }
+        
+        
+        
         Helper.checkNull(LOGGER, "trackResponse", message);
         Helper.logHeader(LOGGER, message.getContainer().getHeader());
 
@@ -225,7 +230,7 @@ public class MusixMatch {
     }
 
     /**
-     * Returns the track response which was returned throught the query.
+     * Returns the track response which was returned through the query.
      * 
      * @param methodName
      *            the name of the API method.
