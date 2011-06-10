@@ -2,7 +2,7 @@
 
 A Java wrapper for the [MusixMatch API](https://developer.musixmatch.com/)
 
-##How to use ?
+###How to use ?
 
 * Declaring the MusixMatch Instance
 
@@ -58,7 +58,7 @@ A Java wrapper for the [MusixMatch API](https://developer.musixmatch.com/)
 		}
 
 
-##Dependencies
+###Dependencies
 
 * Google GSON (http://code.google.com/p/google-gson/)
 * log4j (http://logging.apache.org/log4j/1.2/)
