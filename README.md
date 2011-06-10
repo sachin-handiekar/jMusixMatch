@@ -20,27 +20,26 @@ A Java wrapper for the MusixMatch API
 
 		TrackData data = track.getTrack();
 
-		System.out.println("AlbumID : " + data.getAlbumId());
+		System.out.println("AlbumID : "    + data.getAlbumId());
 		System.out.println("Album Name : " + data.getAlbumName());
-		System.out.println("Artist ID : " + data.getArtistId());
+		System.out.println("Artist ID : "  + data.getArtistId());
 		System.out.println("Album Name : " + data.getArtistName());
-		System.out.println("Track ID : " + data.getTrackId());
+		System.out.println("Track ID : "   + data.getTrackId());
 
 
 * Getting Lyrics
+
 		// Getting Lyrics
 		int trackID = data.getTrackId();
 
 		Lyrics lyrics = musixMatch.getLyrics(trackID);
 
-		System.out.println("Lyrics ID       : " + lyrics.getLyricsId());
-		System.out.println("Lyrics Language : " + lyrics.getLyricsLang());
-		System.out.println("Lyrics Body     : " + lyrics.getLyricsBody());
-		System.out.println("Script-Tracking-URL : "
-				+ lyrics.getScriptTrackingURL());
-		System.out.println("Pixel-Tracking-URL : "
-				+ lyrics.getPixelTrackingURL());
-		System.out.println("Lyrics Copyright : " + lyrics.getLyricsCopyright());
+		System.out.println("Lyrics ID       : "     + lyrics.getLyricsId());
+		System.out.println("Lyrics Language : "     + lyrics.getLyricsLang());
+		System.out.println("Lyrics Body     : "     + lyrics.getLyricsBody());
+		System.out.println("Script-Tracking-URL : " + lyrics.getScriptTrackingURL());
+		System.out.println("Pixel-Tracking-URL : "  + lyrics.getPixelTrackingURL());
+		System.out.println("Lyrics Copyright : "    + lyrics.getLyricsCopyright());
 
 
 
