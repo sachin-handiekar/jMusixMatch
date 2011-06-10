@@ -1,6 +1,6 @@
 #jMusixMatch
 
-A Java wrapper for the (MusixMatch API)[https://developer.musixmatch.com/]
+A Java wrapper for the [MusixMatch API](https://developer.musixmatch.com/)
 
 ##How to use ?
 
