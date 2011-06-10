@@ -10,7 +10,7 @@ A Java wrapper for the MusixMatch API
 		MusixMatch musixMatch = new MusixMatch(apiKey);
 
 
-* Getting Track Data
+* Fuzzy Search
 
 		String trackName = "Don't stop the Party";
 		String artistName = "The Black Eyed Peas";
