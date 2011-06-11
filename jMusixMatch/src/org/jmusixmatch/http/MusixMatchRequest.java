@@ -45,6 +45,7 @@ public class MusixMatchRequest {
             String apiUrl = Constants.API_URL + Constants.API_VERSION
                     + Constants.URL_DELIM + requestString;
 
+                       
             Helper.logInfo(LOGGER, "Calling URL - " + apiUrl);
 
             URL url = new URL(apiUrl);
