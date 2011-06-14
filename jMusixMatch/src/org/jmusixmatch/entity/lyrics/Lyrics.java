@@ -26,112 +26,112 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Lyrics {
 
-    @SerializedName("lyrics_id")
-    private int lyricsId;
+	@SerializedName("lyrics_id")
+	private int lyricsId;
 
-    @SerializedName("lyrics_body")
-    private String lyricsBody;
+	@SerializedName("lyrics_body")
+	private String lyricsBody;
 
-    @SerializedName("lyrics_language")
-    private String lyricsLanguage;
+	@SerializedName("lyrics_language")
+	private String lyricsLanguage;
 
-    @SerializedName("script_tracking_url")
-    private String scriptTrackingURL;
+	@SerializedName("script_tracking_url")
+	private String scriptTrackingURL;
 
-    @SerializedName("pixel_tracking_url")
-    private String pixelTrackingURL;
+	@SerializedName("pixel_tracking_url")
+	private String pixelTrackingURL;
 
-    @SerializedName("lyrics_copyright")
-    private String lyricsCopyright;
+	@SerializedName("lyrics_copyright")
+	private String lyricsCopyright;
 
-    /**
-     * @return the lyricsBody
-     */
-    public String getLyricsBody() {
-        return lyricsBody;
-    }
+	/**
+	 * @return the lyricsBody
+	 */
+	public String getLyricsBody() {
+		return lyricsBody;
+	}
 
-    /**
-     * @param lyricsBody
-     *            the lyricsBody to set
-     */
-    public void setLyricsBody(String lyricsBody) {
-        this.lyricsBody = lyricsBody;
-    }
+	/**
+	 * @param lyricsBody
+	 *            the lyricsBody to set
+	 */
+	public void setLyricsBody(String lyricsBody) {
+		this.lyricsBody = lyricsBody;
+	}
 
-    /**
-     * @return the lyricsLang
-     */
-    public String getLyricsLang() {
-        return lyricsLanguage;
-    }
+	/**
+	 * @return the lyricsLang
+	 */
+	public String getLyricsLang() {
+		return lyricsLanguage;
+	}
 
-    /**
-     * @param lyricsLang
-     *            the lyricsLang to set
-     */
-    public void setLyricsLang(String lyricsLang) {
-        this.lyricsLanguage = lyricsLang;
-    }
+	/**
+	 * @param lyricsLang
+	 *            the lyricsLang to set
+	 */
+	public void setLyricsLang(String lyricsLang) {
+		this.lyricsLanguage = lyricsLang;
+	}
 
-    /**
-     * @return the scriptTrackingURL
-     */
-    public String getScriptTrackingURL() {
-        return scriptTrackingURL;
-    }
+	/**
+	 * @return the scriptTrackingURL
+	 */
+	public String getScriptTrackingURL() {
+		return scriptTrackingURL;
+	}
 
-    /**
-     * @param scriptTrackingURL
-     *            the scriptTrackingURL to set
-     */
-    public void setScriptTrackingURL(String scriptTrackingURL) {
-        this.scriptTrackingURL = scriptTrackingURL;
-    }
+	/**
+	 * @param scriptTrackingURL
+	 *            the scriptTrackingURL to set
+	 */
+	public void setScriptTrackingURL(String scriptTrackingURL) {
+		this.scriptTrackingURL = scriptTrackingURL;
+	}
 
-    /**
-     * @return the pixelTrackingURL
-     */
-    public String getPixelTrackingURL() {
-        return pixelTrackingURL;
-    }
+	/**
+	 * @return the pixelTrackingURL
+	 */
+	public String getPixelTrackingURL() {
+		return pixelTrackingURL;
+	}
 
-    /**
-     * @param pixelTrackingURL
-     *            the pixelTrackingURL to set
-     */
-    public void setPixelTrackingURL(String pixelTrackingURL) {
-        this.pixelTrackingURL = pixelTrackingURL;
-    }
+	/**
+	 * @param pixelTrackingURL
+	 *            the pixelTrackingURL to set
+	 */
+	public void setPixelTrackingURL(String pixelTrackingURL) {
+		this.pixelTrackingURL = pixelTrackingURL;
+	}
 
-    /**
-     * @return the lyricsCopyright
-     */
-    public String getLyricsCopyright() {
-        return lyricsCopyright;
-    }
+	/**
+	 * @return the lyricsCopyright
+	 */
+	public String getLyricsCopyright() {
+		return lyricsCopyright;
+	}
 
-    /**
-     * @param lyricsCopyright
-     *            the lyricsCopyright to set
-     */
-    public void setLyricsCopyright(String lyricsCopyright) {
-        this.lyricsCopyright = lyricsCopyright;
-    }
+	/**
+	 * @param lyricsCopyright
+	 *            the lyricsCopyright to set
+	 */
+	public void setLyricsCopyright(String lyricsCopyright) {
+		this.lyricsCopyright = lyricsCopyright;
+	}
 
-    /**
-     * @param lyricsId
-     *            the lyricsId to set
-     */
-    public void setLyricsId(int lyricsId) {
-        this.lyricsId = lyricsId;
-    }
+	/**
+	 * @param lyricsId
+	 *            the lyricsId to set
+	 */
+	public void setLyricsId(int lyricsId) {
+		this.lyricsId = lyricsId;
+	}
 
-    /**
-     * @return the lyricsId
-     */
-    public int getLyricsId() {
-        return lyricsId;
-    }
+	/**
+	 * @return the lyricsId
+	 */
+	public int getLyricsId() {
+		return lyricsId;
+	}
 
 }

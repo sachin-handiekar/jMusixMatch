@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.jmusixmatch.config.Constants;
 import org.jmusixmatch.config.Methods;
 import org.jmusixmatch.config.StatusCode;
@@ -39,282 +38,243 @@ import com.google.gson.JsonParseException;
 
 public class MusixMatch {
 
-    /**
-     * A field to denote the logger.
-     */
-    private static final Logger LOGGER = Logger.getLogger(MusixMatch.class);
+	/**
+	 * A musiXmatch API Key.
+	 */
+	private final String apiKey;
 
-    /**
-     * A field to denote the class name for logging purposes.
-     */
-    private static final String CLASS_NAME = MusixMatch.class.getName();
+	/**
+	 * MusixMatch Constructor with API-Key.
+	 * 
+	 * @param apiKey
+	 *            A musiXmatch API Key.
+	 */
+	public MusixMatch(String apiKey) {
+		this.apiKey = apiKey;
+	}
 
-    /**
-     * A musiXmatch API Key.
-     */
-    private final String apiKey;
+	/**
+	 * Get Lyrics for the specific trackID.
+	 * 
+	 * @param trackID
+	 * @return
+	 * @throws MusixMatchException
+	 */
+	public Lyrics getLyrics(int trackID) throws MusixMatchException {
+		Lyrics lyrics = null;
 
-    /**
-     * MusixMatch Constructor with API-Key.
-     * 
-     * @param apiKey
-     *            A musiXmatch API Key.
-     */
-    public MusixMatch(String apiKey) {
-        this.apiKey = apiKey;
-    }
+		LyricsGetMessage message = null;
+		Map<String, Object> params = new HashMap<String, Object>();
 
-    /**
-     * Get Lyrics for the specific trackID.
-     * 
-     * @param trackID
-     * @return
-     * @throws MusixMatchException
-     */
-    public Lyrics getLyrics(int trackID) throws MusixMatchException {
-        Lyrics lyrics = null;
+		params.put(Constants.API_KEY, apiKey);
+		params.put(Constants.TRACK_ID, new String("" + trackID));
 
-        String methodName = CLASS_NAME + ".getLyrics()";
-        
-        Helper.logEnter(LOGGER, methodName, null);
-        
-        LyricsGetMessage message = null;
-        Map<String, Object> params = new HashMap<String, Object>();
+		String response = null;
 
-        params.put(Constants.API_KEY, apiKey);
-        params.put(Constants.TRACK_ID, new String("" + trackID));
+		response = MusixMatchRequest.sendRequest(Helper.getURLString(
+				Methods.TRACK_LYRICS_GET, params));
 
-        String response = null;
+		Gson gson = new Gson();
+		try {
+			message = gson.fromJson(response, LyricsGetMessage.class);
+		} catch (JsonParseException jpe) {
+			handleErrorResponse(response);
+		}
 
-        response = MusixMatchRequest.sendRequest(Helper.getURLString(
-                Methods.TRACK_LYRICS_GET, params));
+		lyrics = message.getContainer().getBody().getLyrics();
 
-        Gson gson = new Gson();
-        try {
-            message = gson.fromJson(response, LyricsGetMessage.class);
-        } catch (JsonParseException jpe) {
-            handleErrorResponse(response);
-        }
-        
-        
-        
-        Helper.checkNull(LOGGER, "trackResponse", message);
-        Helper.logHeader(LOGGER, message.getContainer().getHeader());
+		return lyrics;
+	}
 
-        lyrics = message.getContainer().getBody().getLyrics();
-        Helper.logExit(LOGGER, methodName, lyrics);
+	/**
+	 * Search tracks using the given criteria.
+	 * 
+	 * @param q
+	 *            search into every available field
+	 *            (track_name,artist_name,lyrics)
+	 * @param q_artist
+	 *            search for text string among artist names
+	 * @param q_track
+	 *            search for text string among track names
+	 * @param page
+	 *            request specific result page
+	 * @param pageSize
+	 *            specify number of items per result page
+	 * @param f_has_lyrics
+	 *            specify number of items per result page
+	 * @return a list of tracks.
+	 * @throws MusixMatchException
+	 *             if any error occur
+	 */
+	public List<Track> searchTracks(String q, String q_artist, String q_track,
+			int page, int pageSize, boolean f_has_lyrics)
+			throws MusixMatchException {
+		List<Track> trackList = null;
 
-        return lyrics;
-    }
+		TrackSeachMessage message = null;
+		Map<String, Object> params = new HashMap<String, Object>();
 
-    /**
-     * Search tracks using the given criteria.
-     * 
-     * @param q
-     *            search into every available field
-     *            (track_name,artist_name,lyrics)
-     * @param q_artist
-     *            search for text string among artist names
-     * @param q_track
-     *            search for text string among track names
-     * @param page
-     *            request specific result page
-     * @param pageSize
-     *            specify number of items per result page
-     * @param f_has_lyrics
-     *            specify number of items per result page
-     * @return a list of tracks.
-     * @throws MusixMatchException
-     *             if any error occur
-     */
-    public List<Track> searchTracks(String q, String q_artist, String q_track,
-            int page, int pageSize, boolean f_has_lyrics)
-            throws MusixMatchException {
-        List<Track> trackList = null;
+		params.put(Constants.API_KEY, apiKey);
+		params.put(Constants.QUERY, q);
+		params.put(Constants.QUERY_ARTIST, q_artist);
+		params.put(Constants.QUERY_TRACK, q_track);
+		params.put(Constants.PAGE, page);
+		params.put(Constants.PAGE_SIZE, pageSize);
 
-        String methodName = CLASS_NAME + ".searchTracks()";
-        Helper.logEnter(LOGGER, methodName, null);
-        TrackSeachMessage message = null;
-        Map<String, Object> params = new HashMap<String, Object>();
+		if (f_has_lyrics)
+			params.put(Constants.F_HAS_LYRICS, "1");
+		else
+			params.put(Constants.F_HAS_LYRICS, "0");
 
-        params.put(Constants.API_KEY, apiKey);
-        params.put(Constants.QUERY, q);
-        params.put(Constants.QUERY_ARTIST, q_artist);
-        params.put(Constants.QUERY_TRACK, q_track);
-        params.put(Constants.PAGE, page);
-        params.put(Constants.PAGE_SIZE, pageSize);
+		String response = null;
 
-        if (f_has_lyrics)
-            params.put(Constants.F_HAS_LYRICS, "1");
-        else
-            params.put(Constants.F_HAS_LYRICS, "0");
+		response = MusixMatchRequest.sendRequest(Helper.getURLString(
+				Methods.TRACK_SEARCH, params));
 
-        String response = null;
+		Gson gson = new Gson();
 
-        response = MusixMatchRequest.sendRequest(Helper.getURLString(
-                Methods.TRACK_SEARCH, params));
+		try {
+			message = gson.fromJson(response, TrackSeachMessage.class);
+		} catch (JsonParseException jpe) {
+			handleErrorResponse(response);
+		}
 
-        Gson gson = new Gson();
+		int statusCode = message.getTrackMessage().getHeader().getStatus_code();
+		if (statusCode > 200) {
+			throw new MusixMatchException("Status Code is not 200");
+		}
 
-        try {
-            message = gson.fromJson(response, TrackSeachMessage.class);
-        } catch (JsonParseException jpe) {
-            handleErrorResponse(response);
-        }
+		trackList = message.getTrackMessage().getBody().getTrack_list();
 
-        int statusCode = message.getTrackMessage().getHeader().getStatus_code();
-        if (statusCode > 200) {
-            throw new MusixMatchException("Status Code is not 200");
-        }
+		return trackList;
+	}
 
-        Helper.checkNull(LOGGER, "trackResponse", message);
-        Helper.logHeader(LOGGER, message.getTrackMessage().getHeader());
+	/**
+	 * Get the track details using the specified trackId.
+	 * 
+	 * @param trackID
+	 *            track identifier in musiXmatch catalog
+	 * @return the track
+	 * @throws MusixMatchException
+	 */
+	public Track getTrack(int trackID) throws MusixMatchException {
+		Track track = new Track();
 
-        trackList = message.getTrackMessage().getBody().getTrack_list();
+		Map<String, Object> params = new HashMap<String, Object>();
 
-        Helper.logExit(LOGGER, methodName, trackList);
+		params.put(Constants.API_KEY, apiKey);
+		params.put(Constants.TRACK_ID, new String("" + trackID));
 
-        return trackList;
-    }
+		track = getTrackResponse(Methods.TRACK_GET, params);
 
-    /**
-     * Get the track details using the specified trackId.
-     * 
-     * @param trackID
-     *            track identifier in musiXmatch catalog
-     * @return the track
-     * @throws MusixMatchException
-     */
-    public Track getTrack(int trackID) throws MusixMatchException {
-        Track track = new Track();
+		return track;
+	}
 
-        String methodName = CLASS_NAME + ".getTrack()";
-        Helper.logEnter(LOGGER, methodName, null);
+	/**
+	 * Get the most matching track which was retrieved using the search.
+	 * 
+	 * @param q_track
+	 *            search for text string among track names
+	 * @param q_artist
+	 *            search for text string among artist names
+	 * @return the track
+	 * @throws MusixMatchException
+	 */
+	public Track getMatchingTrack(String q_track, String q_artist)
+			throws MusixMatchException {
+		Track track = new Track();
 
-        Map<String, Object> params = new HashMap<String, Object>();
+		Map<String, Object> params = new HashMap<String, Object>();
 
-        params.put(Constants.API_KEY, apiKey);
-        params.put(Constants.TRACK_ID, new String("" + trackID));
+		params.put(Constants.API_KEY, apiKey);
+		params.put(Constants.QUERY_TRACK, q_track);
+		params.put(Constants.QUERY_ARTIST, q_artist);
 
-        track = getTrackResponse(Methods.TRACK_GET, params);
+		track = getTrackResponse(Methods.MATCHER_TRACK_GET, params);
 
-        return track;
-    }
+		return track;
+	}
 
-    /**
-     * Get the most matching track which was retrieved using the search.
-     * 
-     * @param q_track
-     *            search for text string among track names
-     * @param q_artist
-     *            search for text string among artist names
-     * @return the track
-     * @throws MusixMatchException
-     */
-    public Track getMatchingTrack(String q_track, String q_artist)
-            throws MusixMatchException {
-        Track track = new Track();
+	/**
+	 * Returns the track response which was returned through the query.
+	 * 
+	 * @param methodName
+	 *            the name of the API method.
+	 * @param params
+	 *            a map which contains the key-value pair
+	 * @return the track details.
+	 * @throws MusixMatchException
+	 *             if any error occurs.
+	 */
+	private Track getTrackResponse(String methodName, Map<String, Object> params)
+			throws MusixMatchException {
+		Track track = new Track();
+		String response = null;
+		TrackGetMessage message = null;
 
-        String methodName = CLASS_NAME + ".getMatchingTrack()";
-        Helper.logEnter(LOGGER, methodName, null);
+		response = MusixMatchRequest.sendRequest(Helper.getURLString(
+				methodName, params));
 
-        Map<String, Object> params = new HashMap<String, Object>();
+		Gson gson = new Gson();
 
-        params.put(Constants.API_KEY, apiKey);
-        params.put(Constants.QUERY_TRACK, q_track);
-        params.put(Constants.QUERY_ARTIST, q_artist);
+		try {
+			message = gson.fromJson(response, TrackGetMessage.class);
+		} catch (JsonParseException jpe) {
 
-        track = getTrackResponse(Methods.MATCHER_TRACK_GET, params);
+			handleErrorResponse(response);
+		}
 
-        return track;
-    }
+		TrackData data = message.getTrackMessage().getBody().getTrack();
 
-    /**
-     * Returns the track response which was returned through the query.
-     * 
-     * @param methodName
-     *            the name of the API method.
-     * @param params
-     *            a map which contains the key-value pair
-     * @return the track details.
-     * @throws MusixMatchException
-     *             if any error occurs.
-     */
-    private Track getTrackResponse(String methodName, Map<String, Object> params)
-            throws MusixMatchException {
-        Track track = new Track();
-        String response = null;
-        TrackGetMessage message = null;
+		track.setTrack(data);
 
-        response = MusixMatchRequest.sendRequest(Helper.getURLString(
-                methodName, params));
+		return track;
+	}
 
-        Gson gson = new Gson();
+	/**
+	 * Handle the error response.
+	 * 
+	 * @param jsonResponse
+	 *            the jsonContent.
+	 * @throws MusixMatchException
+	 *             if any error occurs
+	 */
+	private void handleErrorResponse(String jsonResponse)
+			throws MusixMatchException {
+		StatusCode statusCode;
 
-        try {
-            message = gson.fromJson(response, TrackGetMessage.class);
-        } catch (JsonParseException jpe) {
-            Helper.logError(LOGGER, jpe);
-            handleErrorResponse(response);
-        }
+		Gson gson = new Gson();
+		ErrorMessage errMessage = gson.fromJson(jsonResponse,
+				ErrorMessage.class);
 
-        Helper.checkNull(LOGGER, "trackResponse", message);
-        Helper.logHeader(LOGGER, message.getTrackMessage().getHeader());
+		int responseCode = errMessage.getMessageContainer().getHeader()
+				.getStatus_code();
 
-        TrackData data = message.getTrackMessage().getBody().getTrack();
+		switch (responseCode) {
+		case 400:
+			statusCode = StatusCode.BAD_SYNTAX;
+			break;
+		case 401:
+			statusCode = StatusCode.AUTH_FAILED;
+			break;
+		case 402:
+			statusCode = StatusCode.LIMIT_REACHED;
+			break;
+		case 403:
+			statusCode = StatusCode.NOT_AUTHORIZED;
+			break;
+		case 404:
+			statusCode = StatusCode.RESOURCE_NOT_FOUND;
+			break;
+		case 405:
+			statusCode = StatusCode.METHOD_NOT_FOUND;
+			break;
+		default:
+			statusCode = StatusCode.ERROR;
+			break;
+		}
 
-        Helper.checkNull(LOGGER, "trackData", data);
-        
-        track.setTrack(data);
-        Helper.logExit(LOGGER, methodName, track);
+		throw new MusixMatchException(statusCode.getStatusMessage());
 
-        return track;
-    }
-
-    /**
-     * Handle the error response.
-     * 
-     * @param jsonResponse
-     *            the jsonContent.
-     * @throws MusixMatchException
-     *             if any error occurs
-     */
-    private void handleErrorResponse(String jsonResponse)
-            throws MusixMatchException {
-        StatusCode statusCode;
-
-        Gson gson = new Gson();
-        ErrorMessage errMessage = gson.fromJson(jsonResponse,
-                ErrorMessage.class);
-
-        int responseCode = errMessage.getMessageContainer().getHeader()
-                .getStatus_code();
-
-        switch (responseCode) {
-        case 400:
-            statusCode = StatusCode.BAD_SYNTAX;
-            break;
-        case 401:
-            statusCode = StatusCode.AUTH_FAILED;
-            break;
-        case 402:
-            statusCode = StatusCode.LIMIT_REACHED;
-            break;
-        case 403:
-            statusCode = StatusCode.NOT_AUTHORIZED;
-            break;
-        case 404:
-            statusCode = StatusCode.RESOURCE_NOT_FOUND;
-            break;
-        case 405:
-            statusCode = StatusCode.METHOD_NOT_FOUND;
-            break;
-        default:
-            statusCode = StatusCode.ERROR;
-            break;
-        }
-
-        throw new MusixMatchException(statusCode.getStatusMessage());
-
-    }
+	}
 }
