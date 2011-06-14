@@ -21,8 +21,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import org.apache.log4j.Logger;
+ 
 import org.jmusixmatch.Helper;
 import org.jmusixmatch.MusixMatch;
 import org.jmusixmatch.MusixMatchException;
@@ -30,42 +29,37 @@ import org.jmusixmatch.config.Constants;
 import org.jmusixmatch.config.Methods;
 
 public class MusixMatchRequest {
-    /**
-     * A field to denote the logger.
-     */
-    private static final Logger LOGGER = Logger
-            .getLogger(MusixMatchRequest.class);
+	 
 
-    public static String sendRequest(String requestString)
-            throws MusixMatchException {
-        StringBuffer buffer = new StringBuffer();
+	public static String sendRequest(String requestString)
+			throws MusixMatchException {
+		StringBuffer buffer = new StringBuffer();
 
-        try {
+		try {
 
-            String apiUrl = Constants.API_URL + Constants.API_VERSION
-                    + Constants.URL_DELIM + requestString;
+			String apiUrl = Constants.API_URL + Constants.API_VERSION
+					+ Constants.URL_DELIM + requestString;
 
-                       
-            Helper.logInfo(LOGGER, "Calling URL - " + apiUrl);
+			 
 
-            URL url = new URL(apiUrl);
+			URL url = new URL(apiUrl);
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(
-                    url.openStream()));
-            String str;
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					url.openStream()));
+			String str;
 
-            while ((str = in.readLine()) != null) {
-                buffer.append(str);
-            }
+			while ((str = in.readLine()) != null) {
+				buffer.append(str);
+			}
 
-            in.close();
-        } catch (MalformedURLException e) {
-            throw new MusixMatchException(e.getMessage());
-        } catch (IOException e) {
-            throw new MusixMatchException(e.getMessage());
-        }
+			in.close();
+		} catch (MalformedURLException e) {
+			throw new MusixMatchException(e.getMessage());
+		} catch (IOException e) {
+			throw new MusixMatchException(e.getMessage());
+		}
 
-        return buffer.toString();
-    }
+		return buffer.toString();
+	}
 
 }
