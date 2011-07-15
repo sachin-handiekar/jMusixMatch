@@ -1,24 +1,7 @@
-/*******************************************************************************
- * Copyright (C) 2011  Sachin Handiekar
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
 package org.jmusixmatch;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 
 import org.jmusixmatch.config.Constants;
 import org.jmusixmatch.config.Methods;
@@ -30,11 +13,11 @@ import org.jmusixmatch.entity.track.Track;
 import org.jmusixmatch.entity.track.TrackData;
 import org.jmusixmatch.entity.track.get.TrackGetMessage;
 import org.jmusixmatch.entity.track.search.TrackSeachMessage;
-
 import org.jmusixmatch.http.MusixMatchRequest;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonParseException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MusixMatch {
 
@@ -62,7 +45,6 @@ public class MusixMatch {
 	 */
 	public Lyrics getLyrics(int trackID) throws MusixMatchException {
 		Lyrics lyrics = null;
-
 		LyricsGetMessage message = null;
 		Map<String, Object> params = new HashMap<String, Object>();
 
@@ -75,6 +57,7 @@ public class MusixMatch {
 				Methods.TRACK_LYRICS_GET, params));
 
 		Gson gson = new Gson();
+
 		try {
 			message = gson.fromJson(response, LyricsGetMessage.class);
 		} catch (JsonParseException jpe) {
@@ -110,7 +93,6 @@ public class MusixMatch {
 			int page, int pageSize, boolean f_has_lyrics)
 			throws MusixMatchException {
 		List<Track> trackList = null;
-
 		TrackSeachMessage message = null;
 		Map<String, Object> params = new HashMap<String, Object>();
 
@@ -121,10 +103,11 @@ public class MusixMatch {
 		params.put(Constants.PAGE, page);
 		params.put(Constants.PAGE_SIZE, pageSize);
 
-		if (f_has_lyrics)
+		if (f_has_lyrics) {
 			params.put(Constants.F_HAS_LYRICS, "1");
-		else
+		} else {
 			params.put(Constants.F_HAS_LYRICS, "0");
+		}
 
 		String response = null;
 
@@ -140,6 +123,7 @@ public class MusixMatch {
 		}
 
 		int statusCode = message.getTrackMessage().getHeader().getStatus_code();
+
 		if (statusCode > 200) {
 			throw new MusixMatchException("Status Code is not 200");
 		}
@@ -159,7 +143,6 @@ public class MusixMatch {
 	 */
 	public Track getTrack(int trackID) throws MusixMatchException {
 		Track track = new Track();
-
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		params.put(Constants.API_KEY, apiKey);
@@ -183,7 +166,6 @@ public class MusixMatch {
 	public Track getMatchingTrack(String q_track, String q_artist)
 			throws MusixMatchException {
 		Track track = new Track();
-
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		params.put(Constants.API_KEY, apiKey);
@@ -220,7 +202,6 @@ public class MusixMatch {
 		try {
 			message = gson.fromJson(response, TrackGetMessage.class);
 		} catch (JsonParseException jpe) {
-
 			handleErrorResponse(response);
 		}
 
@@ -242,11 +223,9 @@ public class MusixMatch {
 	private void handleErrorResponse(String jsonResponse)
 			throws MusixMatchException {
 		StatusCode statusCode;
-
 		Gson gson = new Gson();
 		ErrorMessage errMessage = gson.fromJson(jsonResponse,
 				ErrorMessage.class);
-
 		int responseCode = errMessage.getMessageContainer().getHeader()
 				.getStatus_code();
 
@@ -275,6 +254,5 @@ public class MusixMatch {
 		}
 
 		throw new MusixMatchException(statusCode.getStatusMessage());
-
 	}
 }
