@@ -42,8 +42,8 @@ A Java wrapper for the [MusixMatch API](https://developer.musixmatch.com/)
 
 
 * Search Tracks
-
-                // The following will search for tracks with matching artist_name 'Eminem'
+ 		
+ 		// The following will search for tracks with matching artist_name 'Eminem'
  		List<Track> tracks = musixMatch.searchTracks("", "Eminem", "", 10, 10, true);
 
 		for (Track trk : tracks) {
@@ -61,4 +61,3 @@ A Java wrapper for the [MusixMatch API](https://developer.musixmatch.com/)
 ###Dependencies
 
 * Google GSON (http://code.google.com/p/google-gson/)
-* log4j (http://logging.apache.org/log4j/1.2/)
