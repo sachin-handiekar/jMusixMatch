@@ -49,11 +49,11 @@ A Java wrapper for the [MusixMatch API](https://developer.musixmatch.com/)
 		for (Track trk : tracks) {
 			TrackData trkData = trk.getTrack();
 
-			System.out.println("AlbumID : "    + trkData.getAlbumId());
-			System.out.println("Album Name : " + trkData.getAlbumName());
-			System.out.println("Artist ID : "  + trkData.getArtistId());
-			System.out.println("Album Name : " + trkData.getArtistName());
-			System.out.println("Track ID : "   + trkData.getTrackId());
+			System.out.println("AlbumID : "     + trkData.getAlbumId());
+			System.out.println("Album Name : "  + trkData.getAlbumName());
+			System.out.println("Artist ID : "   + trkData.getArtistId());
+			System.out.println("Artist Name : " + trkData.getArtistName());
+			System.out.println("Track ID : "    + trkData.getTrackId());
 			System.out.println();
 		}
 
