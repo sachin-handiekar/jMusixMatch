@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>jMusixMatch by sachin-handiekar</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>jMusixMatch</h1>
+        <p>A Java wrapper for the MusiXmatch API </p>
+        <p class="view"><a href="https://github.com/sachin-handiekar/jMusixMatch">View the Project on GitHub <small>sachin-handiekar/jMusixMatch</small></a></p>
+        <ul>
+          <li><a href="https://github.com/sachin-handiekar/jMusixMatch/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/sachin-handiekar/jMusixMatch/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/sachin-handiekar/jMusixMatch">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>jMusixMatch</h1>
+
+<p>A Java wrapper for the <a href="https://developer.musixmatch.com/">MusixMatch API</a></p>
+
+<h3>How to use ?</h3>
+
+<ul>
+<li>Declaring the MusixMatch Instance</li>
+</ul><div class="highlight">
+<pre><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"Your MusixMatch API Key"</span><span class="o">;</span>
+<span class="n">MusixMatch</span> <span class="n">musixMatch</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MusixMatch</span><span class="o">(</span><span class="n">apiKey</span><span class="o">);</span>
+</pre>
+</div>
+
+
+<ul>
+<li>Fuzzy Search</li>
+</ul><div class="highlight">
+<pre><span class="n">String</span> <span class="n">trackName</span> <span class="o">=</span> <span class="s">"Don't stop the Party"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">artistName</span> <span class="o">=</span> <span class="s">"The Black Eyed Peas"</span><span class="o">;</span>
+
+<span class="c1">// Track Search [ Fuzzy ]</span>
+<span class="n">Track</span> <span class="n">track</span> <span class="o">=</span> <span class="n">musixMatch</span><span class="o">.</span><span class="na">getMatchingTrack</span><span class="o">(</span><span class="n">trackName</span><span class="o">,</span> <span class="n">artistName</span><span class="o">);</span>
+<span class="n">TrackData</span> <span class="n">data</span> <span class="o">=</span> <span class="n">track</span><span class="o">.</span><span class="na">getTrack</span><span class="o">();</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"AlbumID : "</span>    <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="na">getAlbumId</span><span class="o">());</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Album Name : "</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="na">getAlbumName</span><span class="o">());</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Artist ID : "</span>  <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="na">getArtistId</span><span class="o">());</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Album Name : "</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="na">getArtistName</span><span class="o">());</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Track ID : "</span>   <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="na">getTrackId</span><span class="o">());</span>
+</pre>
+</div>
+
+
+<ul>
+<li>Getting Lyrics</li>
+</ul><div class="highlight">
+<pre><span class="kt">int</span> <span class="n">trackID</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">getTrackId</span><span class="o">();</span>
+
+<span class="n">Lyrics</span> <span class="n">lyrics</span> <span class="o">=</span> <span class="n">musixMatch</span><span class="o">.</span><span class="na">getLyrics</span><span class="o">(</span><span class="n">trackID</span><span class="o">);</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Lyrics ID       : "</span>     <span class="o">+</span> <span class="n">lyrics</span><span class="o">.</span><span class="na">getLyricsId</span><span class="o">());</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Lyrics Language : "</span>     <span class="o">+</span> <span class="n">lyrics</span><span class="o">.</span><span class="na">getLyricsLang</span><span class="o">());</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Lyrics Body     : "</span>     <span class="o">+</span> <span class="n">lyrics</span><span class="o">.</span><span class="na">getLyricsBody</span><span class="o">());</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Script-Tracking-URL : "</span> <span class="o">+</span> <span class="n">lyrics</span><span class="o">.</span><span class="na">getScriptTrackingURL</span><span class="o">());</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Pixel-Tracking-URL : "</span>  <span class="o">+</span> <span class="n">lyrics</span><span class="o">.</span><span class="na">getPixelTrackingURL</span><span class="o">());</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Lyrics Copyright : "</span>    <span class="o">+</span> <span class="n">lyrics</span><span class="o">.</span><span class="na">getLyricsCopyright</span><span class="o">());</span>
+</pre>
+</div>
+
+
+<ul>
+<li>Search Tracks</li>
+</ul><div class="highlight">
+<pre><span class="c1">// The following will search for tracks with matching artist_name 'Eminem'</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">Track</span><span class="o">&gt;</span> <span class="n">tracks</span> <span class="o">=</span> <span class="n">musixMatch</span><span class="o">.</span><span class="na">searchTracks</span><span class="o">(</span><span class="s">""</span><span class="o">,</span> <span class="s">"Eminem"</span><span class="o">,</span> <span class="s">""</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+
+<span class="k">for</span> <span class="o">(</span><span class="n">Track</span> <span class="n">trk</span> <span class="o">:</span> <span class="n">tracks</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">TrackData</span> <span class="n">trkData</span> <span class="o">=</span> <span class="n">trk</span><span class="o">.</span><span class="na">getTrack</span><span class="o">();</span>
+
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"AlbumID : "</span>     <span class="o">+</span> <span class="n">trkData</span><span class="o">.</span><span class="na">getAlbumId</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Album Name : "</span>  <span class="o">+</span> <span class="n">trkData</span><span class="o">.</span><span class="na">getAlbumName</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Artist ID : "</span>   <span class="o">+</span> <span class="n">trkData</span><span class="o">.</span><span class="na">getArtistId</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Artist Name : "</span> <span class="o">+</span> <span class="n">trkData</span><span class="o">.</span><span class="na">getArtistName</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Track ID : "</span>    <span class="o">+</span> <span class="n">trkData</span><span class="o">.</span><span class="na">getTrackId</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+<span class="o">}</span>
+</pre>
+</div>
+
+
+<h3>Dependencies</h3>
+
+<ul>
+<li>Google GSON (<a href="http://code.google.com/p/google-gson/">http://code.google.com/p/google-gson/</a>)</li>
+</ul><h2>Authors and Contributors</h2>
+
+<p><a href="/sachin-handiekar" class="user-mention">@sachin-handiekar</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/sachin-handiekar">sachin-handiekar</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
