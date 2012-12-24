@@ -1,4 +1,5 @@
 #jMusixMatch
+[![Build Status](https://travis-ci.org/sachin-handiekar/jMusixMatch.png)](https://travis-ci.org/sachin-handiekar/jMusixMatch)
 
 A Java wrapper for the [MusixMatch API](https://developer.musixmatch.com/)
 
