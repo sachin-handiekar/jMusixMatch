@@ -3,7 +3,7 @@
 
 A Java wrapper for the [MusixMatch API](https://developer.musixmatch.com/)
 
-###How to use ?
+##How to use ?
 
 * Declaring the MusixMatch Instance
 
@@ -62,6 +62,12 @@ for (Track trk : tracks) {
 }
 ```
 
-###Dependencies
+##Dependencies
 
 * Google GSON (http://code.google.com/p/google-gson/)
+
+##About me
+
+* [LinkedIn](http://uk.linkedin.com/in/sachinhandiekar)
+* Email   : sachin.handiekar at gmail.com / sach21 at gmail.com
+* Twitter : [@sachinhandiekar](http://twitter.com/sachinhandiekar)
