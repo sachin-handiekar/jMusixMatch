@@ -62,6 +62,16 @@ for (Track trk : tracks) {
 }
 ```
 
+##Maven
+
+```xml
+<dependency>
+  <groupId>com.sachinhandiekar</groupId>
+  <artifactId>jMusixMatch</artifactId>
+  <version>1.1.1</version>
+</dependency>
+```
+
 ##Dependencies
 
 * Google GSON (http://code.google.com/p/google-gson/)
