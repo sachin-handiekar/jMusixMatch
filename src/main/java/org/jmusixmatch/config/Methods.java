@@ -45,7 +45,7 @@ public final class Methods {
     public static final String MATCHER_TRACK_GET = "matcher.track.get";
 
     /**
-     * With this api you’ll be able to get the base url for the tracking script
+     * With this api you'll be able to get the base url for the tracking script
      * you need to insert in your page to legalize your existent lyrics library.
      */
     public static final String TRACKING_URL_GET = "tracking.url.get";
