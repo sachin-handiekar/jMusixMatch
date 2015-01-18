@@ -14,6 +14,8 @@ import org.jmusixmatch.entity.track.TrackData;
 import org.jmusixmatch.entity.track.get.TrackGetMessage;
 import org.jmusixmatch.entity.track.search.TrackSeachMessage;
 import org.jmusixmatch.http.MusixMatchRequest;
+import org.jmusixmatch.subtitle.Subtitle;
+import org.jmusixmatch.subtitle.get.SubtitleGetMessage;
 
 import java.util.HashMap;
 import java.util.List;
@@ -68,6 +70,43 @@ public class MusixMatch {
 
 		return lyrics;
 	}
+
+
+    /**
+     * Get Subtitle for the specific trackID.
+     *
+     * @param trackID
+     * @return
+     * @throws MusixMatchException
+     */
+    public Subtitle getSubtitle(int trackID) throws MusixMatchException {
+        Subtitle subtitle = null;
+        SubtitleGetMessage message = null;
+        Map<String, Object> params = new HashMap<String, Object>();
+
+        params.put(Constants.API_KEY, apiKey);
+        params.put(Constants.TRACK_ID, new String("" + trackID));
+
+        String response = null;
+
+        response = MusixMatchRequest.sendRequest(Helper.getURLString(
+                Methods.TRACK_SUBTITLE_GET, params));
+
+        Gson gson = new Gson();
+
+        System.out.println( response );
+
+        try {
+            message = gson.fromJson(response, SubtitleGetMessage.class);
+        } catch (JsonParseException jpe) {
+            jpe.printStackTrace();
+            handleErrorResponse(response);
+        }
+
+        subtitle = message.getContainer().getBody().getSubtitle();
+
+        return subtitle;
+    }
 
 	/**
 	 * Search tracks using the given criteria.
