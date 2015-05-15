@@ -2,7 +2,6 @@ package org.jmusixmatch;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
-
 import org.jmusixmatch.config.Constants;
 import org.jmusixmatch.config.Methods;
 import org.jmusixmatch.config.StatusCode;
@@ -14,6 +13,8 @@ import org.jmusixmatch.entity.track.TrackData;
 import org.jmusixmatch.entity.track.get.TrackGetMessage;
 import org.jmusixmatch.entity.track.search.TrackSeachMessage;
 import org.jmusixmatch.http.MusixMatchRequest;
+import org.jmusixmatch.snippet.Snippet;
+import org.jmusixmatch.snippet.get.SnippetGetMessage;
 import org.jmusixmatch.subtitle.Subtitle;
 import org.jmusixmatch.subtitle.get.SubtitleGetMessage;
 
@@ -71,6 +72,40 @@ public class MusixMatch {
 		return lyrics;
 	}
 
+    /**
+     * Get Snippet for the specified trackID.
+     * @param trackID
+	 * @return Snippet
+	 * @throws MusixMatchException
+     */
+
+    public Snippet getSnippet(int trackID) throws MusixMatchException {
+        Snippet snippet = null;
+        SnippetGetMessage message = null;
+        Map<String, Object> params = new HashMap<String, Object>();
+
+        params.put(Constants.API_KEY, apiKey);
+        params.put(Constants.TRACK_ID, new String("" + trackID));
+
+        String response = null;
+
+        response = MusixMatchRequest.sendRequest(Helper.getURLString(
+				Methods.TRACK_SNIPPET_GET, params));
+
+        Gson gson = new Gson();
+
+        try {
+            message = gson.fromJson(response, SnippetGetMessage.class);
+        } catch (JsonParseException jpe) {
+            handleErrorResponse(response);
+        }
+
+        snippet = message.getContainer().getBody().getSnippet();
+
+        return snippet;
+    }
+
+
 
     /**
      * Get Subtitle for the specific trackID.
@@ -90,7 +125,7 @@ public class MusixMatch {
         String response = null;
 
         response = MusixMatchRequest.sendRequest(Helper.getURLString(
-                Methods.TRACK_SUBTITLE_GET, params));
+				Methods.TRACK_SUBTITLE_GET, params));
 
         Gson gson = new Gson();
 
