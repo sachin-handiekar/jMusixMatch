@@ -1,4 +1,4 @@
-package org.jmusixmatch.subtitle.snippet;
+package org.jmusixmatch.snippet;
 
 import com.google.gson.annotations.SerializedName;
 
