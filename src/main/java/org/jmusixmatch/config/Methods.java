@@ -75,6 +75,11 @@ public final class Methods {
     public static final String TRACK_LYRICS_GET = "track.lyrics.get";
 
     /**
+     * Retrieve the lyric snippet of a track.
+     */
+    public static final String TRACK_SNIPPET_GET = "track.snippet.get";
+
+    /**
      * Retrieve the subtitle of a track.
      */
     public static final String TRACK_SUBTITLE_GET = "track.subtitle.get";
