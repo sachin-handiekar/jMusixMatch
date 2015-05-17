@@ -5,4 +5,6 @@
 target/
 .idea/encodings.xml
 .idea/libraries/Maven__com_google_code_gson_gson_2_1.xml
-jMusixMatch.iml
+jMusixMatch.imljMusixMatch.iml
+.idea/encodings.xml
+.idea/libraries/Maven__com_google_code_gson_gson_2_1.xml
