@@ -3,3 +3,6 @@
 .settings
 *~
 target/
+.idea/libraries/Maven__com_google_code_gson_gson_2_1.xml
+.idea/encodings.xml
+jMusixMatch.iml
