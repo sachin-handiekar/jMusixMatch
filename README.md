@@ -68,7 +68,7 @@ for (Track trk : tracks) {
 <dependency>
   <groupId>com.sachinhandiekar</groupId>
   <artifactId>jMusixMatch</artifactId>
-  <version>1.1.2</version>
+  <version>1.1.3</version>
 </dependency>
 ```
 
