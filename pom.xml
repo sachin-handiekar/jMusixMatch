@@ -14,13 +14,28 @@
 	<packaging>jar</packaging>
 	<description>Java MusixMatch API by Sachin Handiekar</description>
 
-	<developers>
-		<developer>
-			<id>sachin-handiekar</id>
-			<name>Sachin Handiekar</name>
-			<email>sachin.handiekar@gmail.com</email>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <id>sachin-handiekar</id>
+            <name>Sachin Handiekar</name>
+            <email>sachin.handiekar@gmail.com</email>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <slf4j-api.version>1.7.21</slf4j-api.version>
+        <junit.version>4.12</junit.version>
+        <gson.version>2.7</gson.version>
+        <commons.lang3.version>3.4</commons.lang3.version>
+        <commons.codec.version>1.10</commons.codec.version>
+        <logback.version>1.1.7</logback.version>
+        <mockito.core.version>1.10.19</mockito.core.version>
+        <maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
+        <maven-compiler-plugin.java.source.version>1.6</maven-compiler-plugin.java.source.version>
+        <maven-compiler-plugin.java.target.version>1.6</maven-compiler-plugin.java.target.version>
+        <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
+    </properties>
 
 	<licenses>
 		<license>
@@ -48,10 +63,16 @@
             <version>4.12</version>
         </dependency>
 	</dependencies>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
-	<build>
-		<plugins>
-		  <plugin>
+    <build>
+        <plugins>
+            <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
                 <version>1.6.3</version>
@@ -62,19 +83,23 @@
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
-				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-	
-	 <profiles>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${maven-compiler-plugin.java.source.version}</source>
+                    <target>${maven-compiler-plugin.java.target.version}</target>
+                </configuration>
+            </plugin>
+
+        
+
+            
+        </plugins>
+    </build>
+
+    <profiles>
         <profile>
             <id>release-sign-artifacts</id>
             <activation>
@@ -88,7 +113,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>2.2.1</version>
+                        <version>2.1.2</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
