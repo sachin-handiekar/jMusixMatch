@@ -14,63 +14,55 @@ import com.google.gson.annotations.SerializedName;
  * @version 1.0
  */
 public class Header {
-
     @SerializedName("status_code")
-    private int status_code;
-
+     private Integer statusCode;
     @SerializedName("execute_time")
-    private float execute_time;
+     private Double executeTime;
+    @SerializedName("confidence")
+     private Integer confidence;
+    @SerializedName("mode")
+     private String mode;
+    @SerializedName("cached")
+     private Integer cached;
 
-    @SerializedName("available")
-    private int available;
-
-    /**
-     * @return the status_code
-     */
-    public int getStatus_code() {
-        return status_code;
+    public Integer getStatusCode() {
+        return statusCode;
     }
 
-    /**
-     * @param status_code
-     *            the status_code to set
-     */
-    public void setStatus_code(int status_code) {
-        this.status_code = status_code;
+    public void setStatusCode(Integer statusCode) {
+        this.statusCode = statusCode;
     }
 
-    /**
-     * @return the execute_time
-     */
-    public float getExecute_time() {
-        return execute_time;
+    public Double getExecuteTime() {
+        return executeTime;
     }
 
-    /**
-     * @param execute_time
-     *            the execute_time to set
-     */
-    public void setExecute_time(float execute_time) {
-        this.execute_time = execute_time;
+    public void setExecuteTime(Double executeTime) {
+        this.executeTime = executeTime;
     }
 
-    /**
-     * @return the available
-     */
-    public int getAvailable() {
-        return available;
+    public Integer getConfidence() {
+        return confidence;
     }
 
-    /**
-     * @param available
-     *            the available to set
-     */
-    public void setAvailable(int available) {
-        this.available = available;
+    public void setConfidence(Integer confidence) {
+        this.confidence = confidence;
     }
 
-    public String toString() {
-        return status_code + " : " + execute_time;
-
+    public String getMode() {
+        return mode;
     }
+
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    public Integer getCached() {
+        return cached;
+    }
+
+    public void setCached(Integer cached) {
+        this.cached = cached;
+    }
+
 }

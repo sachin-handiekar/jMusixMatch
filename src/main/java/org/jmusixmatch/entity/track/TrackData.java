@@ -2,300 +2,122 @@ package org.jmusixmatch.entity.track;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class TrackData {
 
-    /**
-     * A track identifier in musiXmatch catalog.
-     */
     @SerializedName("track_id")
-    private int trackId;
 
-    /**
-     * A MusicBrainz track identifier.
-     */
+    private Integer trackId;
     @SerializedName("track_mbid")
+
     private String trackMbid;
+    @SerializedName("track_isrc")
 
-    /**
-     * A Spotify track identifier
-     */
+    private String trackIsrc;
     @SerializedName("track_spotify_id")
-    private String track_spotify_id;
 
-    /**
-     * A Soundcloud track identifier
-     */
+    private String trackSpotifyId;
     @SerializedName("track_soundcloud_id")
-    private int track_soundcloud_id;
 
-   /**
-     * A track rating on musixMatch
-     */
-    @SerializedName("track_rating")
-    private int track_rating;
+    private String trackSoundcloudId;
+    @SerializedName("track_xboxmusic_id")
 
-    /**
-     * The length of the track 
-     */
-    @SerializedName("track_length")
-    private int track_length;
-
-    
-    @SerializedName("commontrack_id")
-    private int commontrack_id;
-
-    /**
-     * Whether the track contains explicit lyrics
-     */
-    @SerializedName("explicit")
-    private int explicit;
-
-    /**
-     * Whether the track has lyrics
-     */
-    @SerializedName("has_lyrics")
-    private int has_lyrics;
-
-    /**
-     * Whether the track has subtitles
-     */
-    @SerializedName("has_subtitles")
-    private int has_subtitles;
-
-     /**
-     * Amount of favourites
-     */
-    @SerializedName("num_favourite")
-    private int num_favourite;
-
-    
-    /**
-     * A album_coverart_100x100 identifier.
-     */
-    @SerializedName("album_coverart_100x100")
-    private String album_coverart_100x100;
-
-    /**
-     * A album_coverart_350x350 identifier.
-     */
-    @SerializedName("album_coverart_350x350")
-    private String album_coverart_350x350;
-    
-    /**
-     * A album_coverart_500x500 identifier.
-     */
-    @SerializedName("album_coverart_500x500")
-    private String album_coverart_500x500;
-
-    /**
-     * A album_coverart_800x800 identifier.
-     */
-    @SerializedName("album_coverart_800x800")
-    private String album_coverart_800x800;
-
-    @SerializedName("track_edit_url")
-    private String track_edit_url;
-
-    @SerializedName("updated_time")
-    private String updated_time;
-
-    /**
-     * A album_id identifier.
-     */
-    @SerializedName("album_id")
-    private int albumId;
-
-    /**
-     * A album_name identifier.
-     */
-    @SerializedName("album_name")
-    private String albumName;
-
-    /**
-     * An artist identifier in musiXmatch catalog.
-     */
-    @SerializedName("artist_id")
-    private String artistId;
-
-    /**
-     * A MusicBrainz artist identifier.
-     */
-    @SerializedName("artist_mbid")
-    private String artistMbid;
-
-    /**
-     * A identifier for the artist name.
-     */
-    @SerializedName("artist_name")
-    private String artistName;
-
-
-    @SerializedName("track_share_url")
-    private String track_share_url;
-
-    /**
-     * A instrumental identifier.
-     */
-    @SerializedName("instrumental")
-    private int instrumental;
-
-    /**
-     * A lyrics identifier.
-     */
-    @SerializedName("lyrics_id")
-    private int lyricsId;
-
-    /**
-     * A lyrics-length identifier.
-     */
-    @SerializedName("lyrics_length")
-    private int lyricsLength;
-
-    /**
-     * A subtitle_id identifier.
-     */
-    @SerializedName("subtitle_id")
-    private int subtitleId;
-
-    /**
-     * A identifier for the track Name.
-     */
+    private String trackXboxmusicId;
     @SerializedName("track_name")
+
     private String trackName;
+    @SerializedName("track_name_translation_list")
 
-     public String getTrack_spotify_id() {
-        return track_spotify_id;
-    }
+    private List<Object> trackNameTranslationList = null;
+    @SerializedName("track_rating")
 
-    public void setTrack_spotify_id(String track_spotify_id) {
-        this.track_spotify_id = track_spotify_id;
-    }
+    private Integer trackRating;
+    @SerializedName("track_length")
 
-    public int getTrack_soundcloud_id() {
-        return track_soundcloud_id;
-    }
+    private Integer trackLength;
+    @SerializedName("commontrack_id")
 
-    public void setTrack_soundcloud_id(int track_soundcloud_id) {
-        this.track_soundcloud_id = track_soundcloud_id;
-    }
+    private Integer commontrackId;
+    @SerializedName("instrumental")
 
-    public int getTrack_rating() {
-        return track_rating;
-    }
+    private Integer instrumental;
+    @SerializedName("explicit")
 
-    public void setTrack_rating(int track_rating) {
-        this.track_rating = track_rating;
-    }
+    private Integer explicit;
+    @SerializedName("has_lyrics")
 
-    public int getTrack_length() {
-        return track_length;
-    }
+    private Integer hasLyrics;
+    @SerializedName("has_subtitles")
 
-    public void setTrack_length(int track_length) {
-        this.track_length = track_length;
-    }
+    private Integer hasSubtitles;
+    @SerializedName("num_favourite")
 
-    public int getCommontrack_id() {
-        return commontrack_id;
-    }
+    private Integer numFavourite;
+    @SerializedName("lyrics_id")
 
-    public void setCommontrack_id(int commontrack_id) {
-        this.commontrack_id = commontrack_id;
-    }
+    private Integer lyricsId;
+    @SerializedName("subtitle_id")
 
-    public int getExplicit() {
-        return explicit;
-    }
+    private Integer subtitleId;
+    @SerializedName("album_id")
 
-    public void setExplicit(int explicit) {
-        this.explicit = explicit;
-    }
+    private Integer albumId;
+    @SerializedName("album_name")
 
-    public int getHas_lyrics() {
-        return has_lyrics;
-    }
+    private String albumName;
+    @SerializedName("artist_id")
 
-    public void setHas_lyrics(int has_lyrics) {
-        this.has_lyrics = has_lyrics;
-    }
+    private Integer artistId;
+    @SerializedName("artist_mbid")
 
-    public int getHas_subtitles() {
-        return has_subtitles;
-    }
+    private String artistMbid;
+    @SerializedName("artist_name")
 
-    public void setHas_subtitles(int has_subtitles) {
-        this.has_subtitles = has_subtitles;
-    }
+    private String artistName;
+    @SerializedName("album_coverart_100x100")
 
-    public int getNum_favourite() {
-        return num_favourite;
-    }
+    private String albumCoverart100x100;
+    @SerializedName("album_coverart_350x350")
 
-    public void setNum_favourite(int num_favourite) {
-        this.num_favourite = num_favourite;
-    }
+    private String albumCoverart350x350;
+    @SerializedName("album_coverart_500x500")
 
-    public String getAlbum_coverart_100x100() {
-        return album_coverart_100x100;
-    }
+    private String albumCoverart500x500;
+    @SerializedName("album_coverart_800x800")
 
-    public void setAlbum_coverart_100x100(String album_coverart_100x100) {
-        this.album_coverart_100x100 = album_coverart_100x100;
-    }
+    private String albumCoverart800x800;
+    @SerializedName("track_share_url")
 
-    public String getAlbum_coverart_350x350() {
-        return album_coverart_350x350;
-    }
+    private String trackShareUrl;
+    @SerializedName("track_edit_url")
 
-    public void setAlbum_coverart_350x350(String album_coverart_350x350) {
-        this.album_coverart_350x350 = album_coverart_350x350;
-    }
+    private String trackEditUrl;
+    @SerializedName("commontrack_vanity_id")
 
-    public String getAlbum_coverart_500x500() {
-        return album_coverart_500x500;
-    }
+    private String commontrackVanityId;
+    @SerializedName("restricted")
 
-    public void setAlbum_coverart_500x500(String album_coverart_500x500) {
-        this.album_coverart_500x500 = album_coverart_500x500;
-    }
+    private Integer restricted;
+    @SerializedName("first_release_date")
 
-    public String getAlbum_coverart_800x800() {
-        return album_coverart_800x800;
-    }
+    private String firstReleaseDate;
+    @SerializedName("updated_time")
 
-    public void setAlbum_coverart_800x800(String album_coverart_800x800) {
-        this.album_coverart_800x800 = album_coverart_800x800;
-    }
+    private String updatedTime;
+    @SerializedName("primary_genres")
 
-    public String getTrack_edit_url() {
-        return track_edit_url;
-    }
+    private PrimaryGenres primaryGenres;
 
-    public void setTrack_edit_url(String track_edit_url) {
-        this.track_edit_url = track_edit_url;
-    }
+    @SerializedName("secondary_genres")
 
-    public String getUpdated_time() {
-        return updated_time;
-    }
+    private SecondaryGenres secondaryGenres;
 
-    public void setUpdated_time(String updated_time) {
-        this.updated_time = updated_time;
-    }
-
-    public String getTrack_share_url() {
-        return track_share_url;
-    }
-
-    public void setTrack_share_url(String track_share_url) {
-        this.track_share_url = track_share_url;
-    }
-
-    public int getTrackId() {
+    public Integer getTrackId() {
         return trackId;
     }
 
-    public void setTrackId(int trackId) {
+    public void setTrackId(Integer trackId) {
         this.trackId = trackId;
     }
 
@@ -307,28 +129,36 @@ public class TrackData {
         this.trackMbid = trackMbid;
     }
 
-    public int getLyricsLength() {
-        return lyricsLength;
+    public String getTrackIsrc() {
+        return trackIsrc;
     }
 
-    public void setLyricsLength(int lyricsLength) {
-        this.lyricsLength = lyricsLength;
+    public void setTrackIsrc(String trackIsrc) {
+        this.trackIsrc = trackIsrc;
     }
 
-    public int getInstrumental() {
-        return instrumental;
+    public String getTrackSpotifyId() {
+        return trackSpotifyId;
     }
 
-    public void setInstrumental(int instrumental) {
-        this.instrumental = instrumental;
+    public void setTrackSpotifyId(String trackSpotifyId) {
+        this.trackSpotifyId = trackSpotifyId;
     }
 
-    public int getLyricsId() {
-        return lyricsId;
+    public String getTrackSoundcloudId() {
+        return trackSoundcloudId;
     }
 
-    public void setLyricsId(int lyricsId) {
-        this.lyricsId = lyricsId;
+    public void setTrackSoundcloudId(String trackSoundcloudId) {
+        this.trackSoundcloudId = trackSoundcloudId;
+    }
+
+    public String getTrackXboxmusicId() {
+        return trackXboxmusicId;
+    }
+
+    public void setTrackXboxmusicId(String trackXboxmusicId) {
+        this.trackXboxmusicId = trackXboxmusicId;
     }
 
     public String getTrackName() {
@@ -339,11 +169,115 @@ public class TrackData {
         this.trackName = trackName;
     }
 
-    public String getArtistId() {
+    public List<Object> getTrackNameTranslationList() {
+        return trackNameTranslationList;
+    }
+
+    public void setTrackNameTranslationList(List<Object> trackNameTranslationList) {
+        this.trackNameTranslationList = trackNameTranslationList;
+    }
+
+    public Integer getTrackRating() {
+        return trackRating;
+    }
+
+    public void setTrackRating(Integer trackRating) {
+        this.trackRating = trackRating;
+    }
+
+    public Integer getTrackLength() {
+        return trackLength;
+    }
+
+    public void setTrackLength(Integer trackLength) {
+        this.trackLength = trackLength;
+    }
+
+    public Integer getCommontrackId() {
+        return commontrackId;
+    }
+
+    public void setCommontrackId(Integer commontrackId) {
+        this.commontrackId = commontrackId;
+    }
+
+    public Integer getInstrumental() {
+        return instrumental;
+    }
+
+    public void setInstrumental(Integer instrumental) {
+        this.instrumental = instrumental;
+    }
+
+    public Integer getExplicit() {
+        return explicit;
+    }
+
+    public void setExplicit(Integer explicit) {
+        this.explicit = explicit;
+    }
+
+    public Integer getHasLyrics() {
+        return hasLyrics;
+    }
+
+    public void setHasLyrics(Integer hasLyrics) {
+        this.hasLyrics = hasLyrics;
+    }
+
+    public Integer getHasSubtitles() {
+        return hasSubtitles;
+    }
+
+    public void setHasSubtitles(Integer hasSubtitles) {
+        this.hasSubtitles = hasSubtitles;
+    }
+
+    public Integer getNumFavourite() {
+        return numFavourite;
+    }
+
+    public void setNumFavourite(Integer numFavourite) {
+        this.numFavourite = numFavourite;
+    }
+
+    public Integer getLyricsId() {
+        return lyricsId;
+    }
+
+    public void setLyricsId(Integer lyricsId) {
+        this.lyricsId = lyricsId;
+    }
+
+    public Integer getSubtitleId() {
+        return subtitleId;
+    }
+
+    public void setSubtitleId(Integer subtitleId) {
+        this.subtitleId = subtitleId;
+    }
+
+    public Integer getAlbumId() {
+        return albumId;
+    }
+
+    public void setAlbumId(Integer albumId) {
+        this.albumId = albumId;
+    }
+
+    public String getAlbumName() {
+        return albumName;
+    }
+
+    public void setAlbumName(String albumName) {
+        this.albumName = albumName;
+    }
+
+    public Integer getArtistId() {
         return artistId;
     }
 
-    public void setArtistId(String artistId) {
+    public void setArtistId(Integer artistId) {
         this.artistId = artistId;
     }
 
@@ -363,38 +297,100 @@ public class TrackData {
         this.artistName = artistName;
     }
 
-    public int getSubtitleId() {
-        return subtitleId;
+    public String getAlbumCoverart100x100() {
+        return albumCoverart100x100;
     }
 
-    public void setSubtitleId(int subtitleId) {
-        this.subtitleId = subtitleId;
+    public void setAlbumCoverart100x100(String albumCoverart100x100) {
+        this.albumCoverart100x100 = albumCoverart100x100;
     }
 
-    public int getAlbumId() {
-        return albumId;
+    public String getAlbumCoverart350x350() {
+        return albumCoverart350x350;
     }
 
-    public void setAlbumId(int albumId) {
-        this.albumId = albumId;
+    public void setAlbumCoverart350x350(String albumCoverart350x350) {
+        this.albumCoverart350x350 = albumCoverart350x350;
     }
 
-
-    public String getTrackShareURL() {
-        return track_share_url;
+    public String getAlbumCoverart500x500() {
+        return albumCoverart500x500;
     }
 
-    public void setTrackShareURL(String newURL) {
-        this.track_share_url = newURL;
+    public void setAlbumCoverart500x500(String albumCoverart500x500) {
+        this.albumCoverart500x500 = albumCoverart500x500;
     }
 
-   
-
-    public String getAlbumName() {
-        return albumName;
+    public String getAlbumCoverart800x800() {
+        return albumCoverart800x800;
     }
 
-    public void setAlbumName(String albumName) {
-        this.albumName = albumName;
+    public void setAlbumCoverart800x800(String albumCoverart800x800) {
+        this.albumCoverart800x800 = albumCoverart800x800;
     }
+
+    public String getTrackShareUrl() {
+        return trackShareUrl;
+    }
+
+    public void setTrackShareUrl(String trackShareUrl) {
+        this.trackShareUrl = trackShareUrl;
+    }
+
+    public String getTrackEditUrl() {
+        return trackEditUrl;
+    }
+
+    public void setTrackEditUrl(String trackEditUrl) {
+        this.trackEditUrl = trackEditUrl;
+    }
+
+    public String getCommontrackVanityId() {
+        return commontrackVanityId;
+    }
+
+    public void setCommontrackVanityId(String commontrackVanityId) {
+        this.commontrackVanityId = commontrackVanityId;
+    }
+
+    public Integer getRestricted() {
+        return restricted;
+    }
+
+    public void setRestricted(Integer restricted) {
+        this.restricted = restricted;
+    }
+
+    public String getFirstReleaseDate() {
+        return firstReleaseDate;
+    }
+
+    public void setFirstReleaseDate(String firstReleaseDate) {
+        this.firstReleaseDate = firstReleaseDate;
+    }
+
+    public String getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(String updatedTime) {
+        this.updatedTime = updatedTime;
+    }
+
+    public PrimaryGenres getPrimaryGenres() {
+        return primaryGenres;
+    }
+
+    public void setPrimaryGenres(PrimaryGenres primaryGenres) {
+        this.primaryGenres = primaryGenres;
+    }
+
+    public SecondaryGenres getSecondaryGenres() {
+        return secondaryGenres;
+    }
+
+    public void setSecondaryGenres(SecondaryGenres secondaryGenres) {
+        this.secondaryGenres = secondaryGenres;
+    }
+
 }

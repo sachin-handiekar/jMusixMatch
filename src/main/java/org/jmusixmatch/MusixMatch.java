@@ -28,7 +28,7 @@ public class MusixMatch {
 	 * A musiXmatch API Key.
 	 */
 	private final String apiKey;
-
+	                                      
 	/**
 	 * MusixMatch Constructor with API-Key.
 	 * 
@@ -129,8 +129,6 @@ public class MusixMatch {
 
         Gson gson = new Gson();
 
-        System.out.println( response );
-
         try {
             message = gson.fromJson(response, SubtitleGetMessage.class);
         } catch (JsonParseException jpe) {
@@ -196,7 +194,7 @@ public class MusixMatch {
 			handleErrorResponse(response);
 		}
 
-		int statusCode = message.getTrackMessage().getHeader().getStatus_code();
+		int statusCode = message.getTrackMessage().getHeader().getStatusCode();
 
 		if (statusCode > 200) {
 			throw new MusixMatchException("Status Code is not 200");
@@ -298,10 +296,13 @@ public class MusixMatch {
 			throws MusixMatchException {
 		StatusCode statusCode;
 		Gson gson = new Gson();
+
+		System.out.println(jsonResponse);
+
 		ErrorMessage errMessage = gson.fromJson(jsonResponse,
 				ErrorMessage.class);
 		int responseCode = errMessage.getMessageContainer().getHeader()
-				.getStatus_code();
+				.getStatusCode();
 
 		switch (responseCode) {
 		case 400:
