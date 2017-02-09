@@ -3,6 +3,42 @@
 
 A Java wrapper for the [MusixMatch API](https://developer.musixmatch.com/)
 
+##Maven
+
+```xml
+<dependency>
+  <groupId>com.sachinhandiekar</groupId>
+  <artifactId>jMusixMatch</artifactId>
+  <version>1.1.4</version>
+</dependency>
+```
+
+If you prefer using the latest snapshot build, include the following lines to your pom.xml.
+	
+```xml
+    <repositories>
+        <repository>
+            <id>oss.snapshots</id>
+            <name>OSS Sonatype Snapshot Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.sachinhandiekar</groupId>
+            <artifactId>jMusixMatch</artifactId>
+             <version>1.1.5-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+```
+
 ##How to use ?
 
 * Declaring the MusixMatch Instance
@@ -60,16 +96,6 @@ for (Track trk : tracks) {
     System.out.println("Track ID : "    + trkData.getTrackId());
     System.out.println();
 }
-```
-
-##Maven
-
-```xml
-<dependency>
-  <groupId>com.sachinhandiekar</groupId>
-  <artifactId>jMusixMatch</artifactId>
-  <version>1.1.4</version>
-</dependency>
 ```
 
 ##Dependencies
