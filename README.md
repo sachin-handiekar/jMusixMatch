@@ -38,7 +38,7 @@ If you prefer using the latest snapshot build, include the following lines to yo
     </dependencies>
 ```
 
-## How to use ?
+## Usage
 
 * Declaring the MusixMatch Instance
 
@@ -101,7 +101,7 @@ for (Track trk : tracks) {
 
 * Google GSON (http://code.google.com/p/google-gson/)
 
-## About me
+## Contact Me
 
 * [LinkedIn](http://uk.linkedin.com/in/sachinhandiekar)
 * Email   : sachin.handiekar@gmail.com or sach21@gmail.com
