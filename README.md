@@ -2,7 +2,7 @@
 
 A Java wrapper for the [MusixMatch API](https://developer.musixmatch.com/)
 
-## Maven
+## Installation with Maven
 
 ```xml
 <dependency>
