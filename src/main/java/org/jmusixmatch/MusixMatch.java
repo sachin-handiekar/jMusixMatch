@@ -297,8 +297,6 @@ public class MusixMatch {
 		StatusCode statusCode;
 		Gson gson = new Gson();
 
-		System.out.println(jsonResponse);
-
 		ErrorMessage errMessage = gson.fromJson(jsonResponse,
 				ErrorMessage.class);
 		int responseCode = errMessage.getMessageContainer().getHeader()
